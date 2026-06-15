@@ -45,7 +45,7 @@ def dividir(a, b):
 def calcular_media(notas):
     """Recebe uma lista de notas e retorna a média."""
     total = sum(notas)
-    media = total / 10  # BUG: deveria dividir por len(notas)
+    media = total / len(notas)  # CORRIGIDO
     return media
 
 
@@ -65,7 +65,7 @@ def par_ou_impar(numero):
 # 🐛 BUG: a condição de aprovação está errada
 def verificar_aprovacao(media):
     """Retorna True se o aluno foi aprovado (média >= 6)."""
-    if media >= 9:  # BUG: deveria ser >= 6
+    if media >= 6:  # CORRIGIDO
         return True
     else:
         return False
@@ -92,7 +92,7 @@ def senha_valida(senha):
 # 🐛 BUG: a comparação está invertida
 def maior_numero(a, b):
     """Retorna o maior número entre a e b."""
-    if a < b:  # BUG: deveria ser a > b
+    if a > b:  # CORRIGIDO
         return a
     else:
         return b
@@ -124,7 +124,7 @@ def eh_palindromo(palavra):
     """Retorna True se a palavra for um palíndromo."""
     palavra = palavra.lower()
     invertida = palavra[::-1]
-    if palavra != invertida:  # BUG: deveria ser ==
+    if palavra == invertida:  # CORRIGIDO
         return True
     else:
         return False
@@ -162,7 +162,7 @@ def somar_lista(numeros):
 # 🐛 BUG: está retornando o menor valor, não o maior
 def maior_da_lista(numeros):
     """Retorna o maior número de uma lista."""
-    return min(numeros)  # BUG: deveria ser max(numeros)
+    return max(numeros)  # CORRIGIDO
 
 # Função 19 - Conta quantos alunos têm nota maior ou igual a 6
 def contar_aprovados(notas):
@@ -200,7 +200,7 @@ def cadastrar_aluno(nome, idade, turma):
 # 🐛 BUG: a chave está errada
 def obter_nome(aluno):
     """Retorna o nome do aluno a partir do dicionário."""
-    return aluno["nomes"]  # BUG: a chave correta é "nome"
+    return aluno["nome"]  # CORRIGIDO
 
 # Função 23 - Adiciona uma nota ao cadastro do aluno
 def adicionar_nota(aluno, nota):
@@ -233,7 +233,7 @@ def exibir_boletim(aluno):
 # 🐛 BUG: a fórmula está errada
 def celsius_para_fahrenheit(celsius):
     """Converte graus Celsius para Fahrenheit. Fórmula: (C * 9/5) + 32"""
-    return (celsius * 5 / 9) + 32  # BUG: deveria ser (celsius * 9/5) + 32
+    return (celsius * 9 / 5) + 32  # CORRIGIDO
 
 # Função 27 - Calcula o IMC de uma pessoa
 def calcular_imc(peso, altura):
@@ -257,7 +257,7 @@ def classificar_imc(imc):
 # 🐛 BUG: o cálculo do troco está invertido
 def calcular_troco(valor_pago, valor_produto):
     """Retorna o troco da compra."""
-    troco = valor_produto - valor_pago  # BUG: deveria ser valor_pago - valor_produto
+    troco = valor_pago - valor_produto  # CORRIGIDO
     if troco < 0:
         return "Valor pago insuficiente!"
     return troco
@@ -293,32 +293,32 @@ if __name__ == "__main__":
     print("\n--- BLOCO 1: Matemática ---")
     print("Soma 3+5:", somar(3, 5))
     print("Divisão 10/0:", dividir(10, 0))
-    print("Média [7,8,9]:", calcular_media([7, 8, 9]))  # BUG: resultado incorreto
+    print("Média [7,8,9]:", calcular_media([7, 8, 9]))
 
     print("\n--- BLOCO 2: Verificações ---")
     print("Par ou ímpar (4):", par_ou_impar(4))
-    print("Aprovado com média 6:", verificar_aprovacao(6))   # BUG: retorna False
-    print("Maior entre 5 e 3:", maior_numero(5, 3))          # BUG: retorna 3
+    print("Aprovado com média 6:", verificar_aprovacao(6))
+    print("Maior entre 5 e 3:", maior_numero(5, 3))
 
     print("\n--- BLOCO 3: Strings ---")
     print("Nome maiúsculo:", nome_em_maiusculo("felipe"))
-    print("É palíndromo 'arara':", eh_palindromo("arara"))   # BUG: retorna False
+    print("É palíndromo 'arara':", eh_palindromo("arara"))
     print("Email criado:", criar_email("João Silva", "DS23"))
 
     print("\n--- BLOCO 4: Listas ---")
     print("Notas aprovadas:", notas_aprovadas([3, 6, 7, 4, 9]))
-    print("Maior da lista:", maior_da_lista([3, 6, 7, 4, 9]))  # BUG: retorna 3
+    print("Maior da lista:", maior_da_lista([3, 6, 7, 4, 9]))
 
     print("\n--- BLOCO 5: Dicionários ---")
     aluno = cadastrar_aluno("Ana", 17, "DS23")
     aluno = adicionar_nota(aluno, 8.5)
-    # obter_nome(aluno)  # BUG: vai gerar erro
+    print("Nome do aluno:", obter_nome(aluno))
     exibir_boletim(aluno)
 
     print("\n--- BLOCO 6: Extras ---")
-    print("Celsius 100 → Fahrenheit:", celsius_para_fahrenheit(100))  # BUG
+    print("Celsius 100 → Fahrenheit:", celsius_para_fahrenheit(100))
     print("IMC (70kg, 1.75m):", calcular_imc(70, 1.75))
-    print("Troco (pago R$50, produto R$37):", calcular_troco(50, 37))  # BUG
+    print("Troco (pago R$50, produto R$37):", calcular_troco(50, 37))
 
     print()
     turma = [
